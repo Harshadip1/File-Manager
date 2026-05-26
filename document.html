@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Document Viewer</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/gallery.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><a href="files.html" class="btn btn-ghost">← Back</a><div class="header-actions" style="margin-left:auto"><button class="btn btn-ghost">📥 Download</button><button class="btn btn-primary">🔗 Share</button></div></header>
+<div class="page-content" style="display:flex;justify-content:center">
+<div class="preview-document reveal" id="doc-content"></div>
+</div></main></div>
+<script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{const f=NexusData.files.find(x=>x.type==='doc'||x.type==='pdf')||NexusData.files[0];document.getElementById('doc-content').innerHTML=`<h1>${f.name}</h1><p style="color:#666;margin:1rem 0">Document viewer demo — ${f.sizeFormatted}</p>${'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>'.repeat(12)}`;});</script>
+</body></html>

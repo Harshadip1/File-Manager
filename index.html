@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="sidebar-overlay"></div>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-storage">
+        <div class="storage-label"><span>Storage</span><span>847 / 1000 GB</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:84.7%"></div></div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="top-header">
+        <button class="menu-toggle" aria-label="Menu">☰</button>
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="search" placeholder="Search files, folders... (Ctrl+K)" data-global-search>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-icon" data-theme-toggle aria-label="Theme">🌙</button>
+          <a href="notifications.html" class="btn btn-icon">🔔<span class="notification-dot"></span></a>
+          <a href="uploads.html" class="btn btn-primary"><span>📤</span> Upload</a>
+        </div>
+      </header>
+      <div class="page-content">
+        <div class="page-header reveal">
+          <h2>Dashboard</h2>
+          <p>Welcome back — here's your cloud storage overview</p>
+          <p class="sync-animation syncing" style="margin-top:0.5rem"><span class="sync-icon">🔄</span> Cloud sync active — last synced 2 min ago</p>
+        </div>
+
+        <div class="stats-grid reveal">
+          <div class="stat-card"><div class="stat-icon purple">💾</div><div><div class="stat-value">847 GB</div><div class="stat-label">Storage Used</div><div class="stat-change up">↑ 12% this month</div></div></div>
+          <div class="stat-card"><div class="stat-icon cyan">📁</div><div><div class="stat-value">12,847</div><div class="stat-label">Total Files</div><div class="stat-change up">↑ 1,247 uploads</div></div></div>
+          <div class="stat-card"><div class="stat-icon green">🔗</div><div><div class="stat-value">342</div><div class="stat-label">Shared Links</div><div class="stat-change up">↑ 28 new</div></div></div>
+          <div class="stat-card"><div class="stat-icon amber">👥</div><div><div class="stat-value">48</div><div class="stat-label">Team Members</div><div class="stat-change up">↑ 3 online</div></div></div>
+        </div>
+
+        <div class="quick-actions reveal">
+          <a href="uploads.html" class="quick-action"><div class="qa-icon">📤</div><span>Upload</span></a>
+          <a href="folders.html" class="quick-action"><div class="qa-icon">📂</div><span>New Folder</span></a>
+          <a href="sharing.html" class="quick-action"><div class="qa-icon">🔗</div><span>Share</span></a>
+          <a href="analytics.html" class="quick-action"><div class="qa-icon">📊</div><span>Analytics</span></a>
+        </div>
+
+        <div class="dashboard-grid reveal">
+          <div class="dashboard-main">
+            <div class="chart-card" style="margin-bottom:1.5rem">
+              <h3>Upload Trends <span style="font-size:0.8rem;color:var(--text-muted)">2025</span></h3>
+              <div id="dash-upload-chart"></div>
+            </div>
+            <div class="glass-card">
+              <h3 style="margin-bottom:1rem">Recent Files</h3>
+              <div class="data-table-wrap" style="max-height:320px;overflow-y:auto">
+                <table class="data-table">
+                  <thead><tr><th>Name</th><th>Type</th><th>Size</th><th>Owner</th><th>Date</th></tr></thead>
+                  <tbody id="dash-recent-files"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="chart-card" style="margin-bottom:1.5rem">
+              <h3>Storage Breakdown</h3>
+              <div id="dash-storage-donut"></div>
+            </div>
+            <div class="glass-card">
+              <h3 style="margin-bottom:1rem">Notifications</h3>
+              <div class="notification-preview" id="dash-notifications"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget-row reveal">
+          <div class="glass-card">
+            <h3 style="margin-bottom:1rem">Team Activity</h3>
+            <div class="activity-feed" id="dash-activity"></div>
+          </div>
+          <div class="glass-card">
+            <h3 style="margin-bottom:1rem">Favorite Folders</h3>
+            <div id="dash-folders"></div>
+          </div>
+        </div>
+
+        <div class="ai-suggestions reveal">
+          <h4>✨ AI File Suggestions</h4>
+          <span class="ai-chip">Archive old projects</span>
+          <span class="ai-chip">Merge duplicate PDFs</span>
+          <span class="ai-chip">Free up 24 GB</span>
+          <span class="ai-chip">Tag untagged media</span>
+          <span class="ai-chip">Share Q4 reports</span>
+        </div>
+
+        <div class="glass-card reveal" style="margin-top:2rem">
+          <h3 style="margin-bottom:1rem">All Recent Uploads (80 items)</h3>
+          <div class="files-grid" id="dash-files-grid"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/files.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      NexusAnalytics.renderBarChart(document.getElementById('dash-upload-chart'), NexusData.analytics.monthlyUploads);
+      NexusAnalytics.renderDonut(document.getElementById('dash-storage-donut'), 84.7, 'Used');
+      document.getElementById('dash-recent-files').innerHTML = NexusData.recent.slice(0, 25).map(f =>
+        `<tr><td>${f.icon} ${f.name}</td><td><span class="badge badge-primary">${f.type}</span></td><td>${f.sizeFormatted}</td><td>${f.owner}</td><td>${NexusApp.formatDate(f.uploaded)}</td></tr>`
+      ).join('');
+      document.getElementById('dash-notifications').innerHTML = NexusData.notifications.slice(0, 12).map(n =>
+        `<div class="notif-item ${n.read ? '' : 'unread'}"><div class="notif-icon" style="background:var(--bg-tertiary)">${n.icon}</div><div><p style="font-size:0.85rem">${n.message}</p><time style="font-size:0.7rem;color:var(--text-muted)">${NexusApp.formatDate(n.time)}</time></div></div>`
+      ).join('');
+      document.getElementById('dash-activity').innerHTML = NexusData.activities.slice(0, 15).map(a =>
+        `<div class="activity-item"><div class="activity-avatar">${a.user.charAt(0)}</div><div class="activity-content"><p><strong>${a.user}</strong> ${a.action} <em>${a.target}</em></p><time>${NexusApp.formatDate(a.time)}</time></div></div>`
+      ).join('');
+      document.getElementById('dash-folders').innerHTML = NexusData.folders.slice(0, 10).map(f =>
+        `<div class="folder-tree-item"><span style="color:${f.color}">📁</span> ${f.name} <span style="margin-left:auto;font-size:0.75rem;color:var(--text-muted)">${f.files} files</span></div>`
+      ).join('');
+      NexusFiles.renderGrid(document.getElementById('dash-files-grid'), NexusData.recent, 24);
+    });
+  </script>
+</body>
+</html>

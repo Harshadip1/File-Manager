@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Media Gallery</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/gallery.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><input data-global-search></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button></div></header>
+<div class="page-content">
+<div class="page-header reveal"><h2>🖼️ Media Gallery</h2><p>140 media items — images, videos & audio</p></div>
+<div class="media-filters reveal"><button class="chip active">All</button><button class="chip">Images</button><button class="chip">Videos</button><button class="chip">Audio</button></div>
+<h3 style="margin:1.5rem 0 1rem">Albums</h3>
+<div class="album-grid reveal" id="albums"></div>
+<h3 style="margin:2rem 0 1rem">Masonry Gallery</h3>
+<div class="masonry-gallery reveal" id="masonry"></div>
+<h3 style="margin:2rem 0 1rem">Audio Playlist</h3>
+<div class="glass-card reveal" id="playlist"></div>
+</div></main></div>
+<script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{
+const albums=[...new Set(NexusData.media.map(m=>m.album))];
+document.getElementById('albums').innerHTML=albums.map(a=>{const c=NexusData.media.filter(m=>m.album===a).length;return`<div class="album-card"><div class="album-cover">📷</div><div class="album-info"><h4>${a}</h4><p>${c} items</p></div></div>`;}).join('');
+document.getElementById('masonry').innerHTML=NexusData.media.map(m=>`<div class="masonry-item"><div class="masonry-placeholder">${m.type==='video'?'🎬':m.type==='audio'?'🎵':'🖼️'}</div><div class="masonry-overlay"><h4>${m.title}</h4><p>${m.album} • ${m.size}</p></div></div>`).join('');
+document.getElementById('playlist').innerHTML=NexusData.media.filter(m=>m.type==='audio').slice(0,25).map((m,i)=>`<div class="playlist-item ${i===0?'playing':''}"><div class="playlist-thumb">🎵</div><div><strong>${m.title}</strong><p style="font-size:0.8rem;color:var(--text-muted)">${m.size}</p></div></div>`).join('');});</script>
+</body></html>

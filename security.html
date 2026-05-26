@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud — Security Center</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="sidebar-overlay"></div>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+    <main class="main-content">
+      <header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><input data-global-search></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button></div></header>
+      <div class="page-content">
+        <div class="page-header reveal"><h2>🔒 Security Center</h2><p>Protection status: Excellent — All systems secure</p></div>
+        <div class="stats-grid reveal">
+          <div class="stat-card"><div class="stat-icon green">✓</div><div><div class="stat-value">AES-256</div><div class="stat-label">Encryption Active</div></div></div>
+          <div class="stat-card"><div class="stat-icon purple">🔐</div><div><div class="stat-value">2FA</div><div class="stat-label">Enabled</div></div></div>
+          <div class="stat-card"><div class="stat-icon cyan">📱</div><div><div class="stat-value">14</div><div class="stat-label">Devices</div></div></div>
+          <div class="stat-card"><div class="stat-icon amber">⚠️</div><div><div class="stat-value">3</div><div class="stat-label">Alerts</div></div></div>
+        </div>
+        <div class="grid-2 reveal">
+          <div class="glass-card"><h3 style="margin-bottom:1rem">Device Management</h3><div id="devices-list"></div></div>
+          <div class="glass-card"><h3 style="margin-bottom:1rem">Login Activity</h3><div class="data-table-wrap" style="max-height:350px;overflow-y:auto"><table class="data-table"><thead><tr><th>User</th><th>Action</th><th>IP</th><th>Device</th><th>Time</th></tr></thead><tbody id="login-activity"></tbody></table></div></div>
+        </div>
+        <div class="glass-card reveal" style="margin-top:2rem"><h3>Security Alerts Timeline</h3><div class="timeline" id="security-timeline" style="margin-top:1rem"></div></div>
+      </div>
+    </main>
+  </div>
+  <script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('devices-list').innerHTML = NexusData.devices.map(d =>
+        `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;border-bottom:1px solid var(--border)"><div><strong>${d.name}</strong><p style="font-size:0.8rem;color:var(--text-muted)">${d.location} • ${NexusApp.formatDate(d.lastLogin)}</p></div><span class="badge ${d.current?'badge-success':'badge-primary'}">${d.current?'Current':d.trusted?'Trusted':'Review'}</span></div>`
+      ).join('');
+      document.getElementById('login-activity').innerHTML = NexusData.activities.slice(0, 40).map(a =>
+        `<tr><td>${a.user}</td><td>${a.action}</td><td>${a.ip}</td><td>${a.device}</td><td>${NexusApp.formatDate(a.time)}</td></tr>`
+      ).join('');
+      document.getElementById('security-timeline').innerHTML = NexusData.notifications.filter(n=>n.type==='security').slice(0,15).concat(NexusData.notifications.slice(0,10)).map(n =>
+        `<div class="timeline-item"><p>${n.icon} ${n.message}</p><time style="font-size:0.75rem;color:var(--text-muted)">${NexusApp.formatDate(n.time)}</time></div>`
+      ).join('');
+    });
+  </script>
+</body>
+</html>

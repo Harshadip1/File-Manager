@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud — Notifications</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="sidebar-overlay"></div>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+    <main class="main-content">
+      <header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><input placeholder="Filter notifications..."></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button><button class="btn btn-ghost">Mark all read</button></div></header>
+      <div class="page-content">
+        <div class="page-header reveal"><h2>🔔 Notifications</h2><p>130 notifications — Upload, share, security & team alerts</p></div>
+        <div class="tabs reveal"><button class="tab active">All</button><button class="tab">Uploads</button><button class="tab">Sharing</button><button class="tab">Security</button><button class="tab">Team</button></div>
+        <div class="glass-card reveal" id="notifications-list"></div>
+      </div>
+    </main>
+  </div>
+  <script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('notifications-list').innerHTML = NexusData.notifications.map(n =>
+        `<div class="notif-item ${n.read?'':'unread'}" style="padding:1rem;border-bottom:1px solid var(--border)"><div class="notif-icon" style="background:var(--bg-tertiary)">${n.icon}</div><div style="flex:1"><p>${n.message}</p><div style="display:flex;gap:0.5rem;margin-top:0.35rem"><span class="badge badge-${n.priority==='high'?'danger':n.priority==='low'?'primary':'warning'}">${n.priority}</span><span class="badge badge-primary">${n.type}</span><time style="font-size:0.75rem;color:var(--text-muted)">${NexusApp.formatDate(n.time)}</time></div></div></div>`
+      ).join('');
+    });
+  </script>
+</body>
+</html>

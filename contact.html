@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Contact</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><div class="header-actions" style="margin-left:auto"><button class="btn btn-icon" data-theme-toggle>🌙</button></div></header>
+<div class="page-content">
+<div class="glass-card reveal" style="max-width:600px;margin:0 auto">
+<h2>Contact Support</h2>
+<p style="color:var(--text-muted);margin:0.5rem 0 1.5rem">Get help with your cloud storage (demo form)</p>
+<form id="contact-form">
+<label style="display:block;margin-bottom:0.5rem">Name</label>
+<input type="text" required style="width:100%;padding:0.75rem;margin-bottom:1rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);color:inherit">
+<label style="display:block;margin-bottom:0.5rem">Email</label>
+<input type="email" required style="width:100%;padding:0.75rem;margin-bottom:1rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);color:inherit">
+<label style="display:block;margin-bottom:0.5rem">Message</label>
+<textarea rows="5" required style="width:100%;padding:0.75rem;margin-bottom:1rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);color:inherit;resize:vertical"></textarea>
+<button type="submit" class="btn btn-primary">Send Message</button>
+</form>
+</div></div></main></div>
+<script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+<script>document.getElementById('contact-form')?.addEventListener('submit',e=>{e.preventDefault();NexusApp.toast('Message sent (demo)','success');});</script>
+</body></html>

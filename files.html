@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud — My Files</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="sidebar-overlay"></div>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-storage">
+        <div class="storage-label"><span>Storage</span><span>847 / 1000 GB</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:84.7%"></div></div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="top-header">
+        <button class="menu-toggle" aria-label="Menu">☰</button>
+        <div class="search-bar"><span class="search-icon">🔍</span><input type="search" placeholder="Search files..." data-global-search id="page-search"></div>
+        <div class="header-actions">
+          <button class="btn btn-icon" data-theme-toggle>🌙</button>
+          <a href="uploads.html" class="btn btn-primary">📤 Upload</a>
+        </div>
+      </header>
+      <div class="page-content">
+        <div class="page-header reveal">
+          <h2>My Files</h2>
+          <p id="file-count">400 files — All your cloud storage in one place</p>
+        </div>
+        <div class="breadcrumb reveal"><a href="index.html">Home</a> / <span>My Files</span></div>
+        <div class="toolbar reveal">
+          <div class="view-toggle">
+            <button class="active" data-view="grid">⊞ Grid</button>
+            <button data-view="list">☰ List</button>
+          </div>
+          <div class="filter-chips">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="image">Images</button>
+            <button class="chip" data-filter="video">Videos</button>
+            <button class="chip" data-filter="pdf">PDFs</button>
+            <button class="chip" data-filter="doc">Documents</button>
+            <button class="chip" data-filter="xls">Spreadsheets</button>
+            <button class="chip" data-filter="zip">Archives</button>
+            <button class="chip" data-filter="audio">Audio</button>
+            <button class="chip" data-filter="code">Code</button>
+          </div>
+          <select id="sort-select" class="btn btn-ghost" style="margin-left:auto">
+            <option value="name">Sort: Name</option>
+            <option value="size">Sort: Size</option>
+            <option value="date">Sort: Date</option>
+            <option value="owner">Sort: Owner</option>
+          </select>
+        </div>
+        <div class="files-grid reveal" id="files-grid"></div>
+        <div class="data-table-wrap reveal" id="files-table-wrap" style="display:none;margin-top:1rem">
+          <table class="data-table">
+            <thead><tr><th></th><th>Name</th><th>Type</th><th>Size</th><th>Date</th><th>Owner</th><th>Folder</th><th>Actions</th></tr></thead>
+            <tbody id="files-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="selection-bar">
+    <span><strong data-selection-count>0</strong> selected</span>
+    <button class="btn btn-ghost">Download</button>
+    <button class="btn btn-ghost">Share</button>
+    <button class="btn btn-ghost">Move</button>
+    <button class="btn btn-ghost" style="color:var(--danger)">Delete</button>
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/files.js"></script>
+  <script src="js/app.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => NexusFiles.initFilesPage());</script>
+</body>
+</html>

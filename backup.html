@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Cloud Backup</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/dashboard.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><div class="header-actions" style="margin-left:auto"><button class="btn btn-icon" data-theme-toggle>🌙</button><button class="btn btn-primary">Run Backup Now</button></div></header>
+<div class="page-content">
+<div class="page-header reveal"><h2>☁️ Cloud Backup</h2><p class="sync-animation syncing"><span class="sync-icon">🔄</span> Last backup: 2 hours ago — Next: Daily 2:00 AM</p></div>
+<div class="stats-grid reveal">
+<div class="stat-card"><div class="stat-icon green">✓</div><div><div class="stat-value">99.9%</div><div class="stat-label">Backup Success Rate</div></div></div>
+<div class="stat-card"><div class="stat-icon cyan">📦</div><div><div class="stat-value">847 GB</div><div class="stat-label">Backed Up</div></div></div>
+<div class="stat-card"><div class="stat-icon purple">📅</div><div><div class="stat-value">365</div><div class="stat-label">Retention Days</div></div></div>
+</div>
+<div class="glass-card reveal"><h3>Backup History</h3><table class="data-table" style="margin-top:1rem"><thead><tr><th>Date</th><th>Size</th><th>Files</th><th>Status</th><th>Duration</th></tr></thead><tbody id="backup-history"></tbody></table></div>
+<div class="glass-card reveal" style="margin-top:2rem"><h3>Storage Cleaner</h3><p style="color:var(--text-muted);margin:0.5rem 0">Recover 24 GB by removing duplicates and old versions</p><button class="btn btn-primary" style="margin-top:1rem">Analyze Storage</button></div>
+</div></main></div>
+<script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{document.getElementById('backup-history').innerHTML=Array(30).fill(0).map((_,i)=>`<tr><td>${new Date(Date.now()-i*86400000).toLocaleDateString()}</td><td>${NexusData.randomInt(10,50)} GB</td><td>${NexusData.randomInt(100,5000)}</td><td><span class="badge badge-success">Completed</span></td><td>${NexusData.randomInt(5,45)} min</td></tr>`).join('');});</script>
+</body></html>

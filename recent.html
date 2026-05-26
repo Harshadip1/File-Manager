@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Recent Files</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><input data-global-search placeholder="Search recent..."></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button></div></header>
+<div class="page-content">
+<div class="page-header reveal"><h2>🕐 Recent Files</h2><p>80 recently accessed files</p></div>
+<div class="data-table-wrap reveal"><table class="data-table"><thead><tr><th>Name</th><th>Type</th><th>Size</th><th>Last Access</th><th>Owner</th></tr></thead><tbody id="recent-table"></tbody></table></div>
+<div class="files-grid reveal" id="recent-grid" style="margin-top:2rem"></div>
+</div></main></div>
+<script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/files.js"></script><script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{document.getElementById('recent-table').innerHTML=NexusData.recent.map(f=>`<tr><td>${f.icon} ${f.name}</td><td>${f.type}</td><td>${f.sizeFormatted}</td><td>${NexusApp.formatDate(f.modified)}</td><td>${f.owner}</td></tr>`).join('');NexusFiles.renderGrid(document.getElementById('recent-grid'),NexusData.recent);});</script>
+</body></html>

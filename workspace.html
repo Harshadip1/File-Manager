@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud — Team Workspace</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="sidebar-overlay"></div>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+    <main class="main-content">
+      <header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><input data-global-search placeholder="Search workspace..."></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button><button class="btn btn-primary">+ Invite</button></div></header>
+      <div class="page-content">
+        <div class="page-header reveal"><h2>👥 Team Workspace</h2><p>28 shared workspaces • 48 team members</p></div>
+        <div class="grid-4 reveal" id="workspace-cards"></div>
+        <div class="grid-2 reveal" style="margin-top:2rem">
+          <div class="glass-card">
+            <h3 style="margin-bottom:1rem">Team Members (48)</h3>
+            <div class="data-table-wrap" style="max-height:400px;overflow-y:auto"><table class="data-table"><thead><tr><th>User</th><th>Role</th><th>Dept</th><th>Status</th><th>Storage</th></tr></thead><tbody id="team-members"></tbody></table></div>
+          </div>
+          <div class="glass-card" style="display:flex;flex-direction:column">
+            <h3 style="margin-bottom:1rem">💬 Team Chat</h3>
+            <div id="chat-messages" style="flex:1;overflow-y:auto;max-height:300px;margin-bottom:1rem"></div>
+            <input type="text" placeholder="Type a message..." style="padding:0.75rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);color:inherit">
+          </div>
+        </div>
+        <div class="glass-card reveal" style="margin-top:2rem"><h3 style="margin-bottom:1rem">Workspace Activity</h3><div class="timeline" id="ws-activity"></div></div>
+      </div>
+    </main>
+  </div>
+  <script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('workspace-cards').innerHTML = NexusData.workspaces.map(w =>
+        `<div class="glass-card"><h4>${w.name}</h4><p style="font-size:0.85rem;color:var(--text-muted);margin:0.5rem 0">${w.members} members • ${w.files} files</p><p style="font-size:0.8rem">${w.storage}</p><span class="badge badge-primary">${w.role}</span><p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.5rem">Updated ${NexusApp.formatDate(w.updated)}</p></div>`
+      ).join('');
+      document.getElementById('team-members').innerHTML = NexusData.users.map(u =>
+        `<tr><td><span class="activity-avatar" style="width:28px;height:28px;display:inline-flex;font-size:0.7rem">${u.avatar}</span> ${u.name}</td><td>${u.role}</td><td>${u.department}</td><td><span class="badge badge-${u.status==='online'?'success':'warning'}">${u.status}</span></td><td>${u.storageUsed}</td></tr>`
+      ).join('');
+      const msgs = ['Uploaded new designs','Shared Q4 folder','Commented on report','Joined workspace','Updated permissions'];
+      document.getElementById('chat-messages').innerHTML = Array(20).fill(0).map((_,i) =>
+        `<div style="padding:0.5rem 0;border-bottom:1px solid var(--border)"><strong>${NexusData.random(NexusData.users).name}</strong><p style="font-size:0.85rem">${NexusData.random(msgs)}</p></div>`
+      ).join('');
+      document.getElementById('ws-activity').innerHTML = NexusData.activities.slice(0, 25).map(a =>
+        `<div class="timeline-item"><p><strong>${a.user}</strong> ${a.action} ${a.target}</p><time style="font-size:0.75rem;color:var(--text-muted)">${NexusApp.formatDate(a.time)}</time></div>`
+      ).join('');
+    });
+  </script>
+</body>
+</html>

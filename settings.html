@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud — Settings</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="sidebar-overlay"></div>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+    <main class="main-content">
+      <header class="top-header"><button class="menu-toggle">☰</button><div class="header-actions" style="margin-left:auto"><button class="btn btn-icon" data-theme-toggle>🌙</button></div></header>
+      <div class="page-content">
+        <div class="page-header reveal"><h2>⚙️ Settings</h2><p>Customize your cloud experience</p></div>
+        <div class="grid-2 reveal">
+          <div class="glass-card">
+            <h3 style="margin-bottom:1rem">Appearance</h3>
+            <label style="display:flex;justify-content:space-between;padding:0.75rem 0;border-bottom:1px solid var(--border)">Theme <button class="btn btn-ghost" data-theme-toggle>Toggle</button></label>
+            <label style="display:flex;justify-content:space-between;padding:0.75rem 0">Language <select class="btn btn-ghost"><option>English</option><option>Spanish</option><option>French</option><option>German</option><option>Japanese</option></select></label>
+          </div>
+          <div class="glass-card">
+            <h3 style="margin-bottom:1rem">Storage & Sync</h3>
+            <label style="display:flex;justify-content:space-between;padding:0.75rem 0"><span>Auto Sync</span><input type="checkbox" checked></label>
+            <label style="display:flex;justify-content:space-between;padding:0.75rem 0"><span>Offline Mode</span><input type="checkbox"></label>
+            <label style="display:flex;justify-content:space-between;padding:0.75rem 0"><span>Compression</span><input type="checkbox"></label>
+          </div>
+          <div class="glass-card">
+            <h3 style="margin-bottom:1rem">Notifications</h3>
+            <label style="display:flex;justify-content:space-between;padding:0.75rem 0"><span>Email alerts</span><input type="checkbox" checked></label>
+            <label style="display:flex;justify-content:space-between;padding:0.75rem 0"><span>Push notifications</span><input type="checkbox" checked></label>
+          </div>
+          <div class="glass-card">
+            <h3 style="margin-bottom:1rem">⌨️ Keyboard Shortcuts</h3>
+            <p style="font-size:0.9rem;padding:0.35rem 0"><span class="kbd">Ctrl</span> + <span class="kbd">K</span> Search</p>
+            <p style="font-size:0.9rem;padding:0.35rem 0"><span class="kbd">Ctrl</span> + <span class="kbd">U</span> Upload</p>
+            <p style="font-size:0.9rem;padding:0.35rem 0"><span class="kbd">Ctrl</span> + <span class="kbd">F</span> Favorites</p>
+          </div>
+          <div class="glass-card">
+            <h3 style="margin-bottom:1rem">🏷️ File Tagging</h3>
+            <div class="filter-chips"><span class="chip active">urgent</span><span class="chip">review</span><span class="chip">approved</span><span class="chip">draft</span><span class="chip">archive</span></div>
+          </div>
+          <div class="glass-card">
+            <h3 style="margin-bottom:1rem">📅 Backup Schedule</h3>
+            <select class="btn btn-ghost" style="width:100%"><option>Daily at 2:00 AM</option><option>Weekly</option><option>Monthly</option></select>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+</body>
+</html>

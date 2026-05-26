@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Download Manager</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><div class="header-actions" style="margin-left:auto"><button class="btn btn-icon" data-theme-toggle>🌙</button></div></header>
+<div class="page-content">
+<div class="page-header reveal"><h2>📥 Download Manager</h2><p>70 download tasks</p></div>
+<div id="download-queue"></div>
+<div class="data-table-wrap reveal" style="margin-top:2rem"><table class="data-table"><thead><tr><th>File</th><th>Size</th><th>Progress</th><th>Status</th><th>Started</th></tr></thead><tbody id="downloads-table"></tbody></table></div>
+</div></main></div>
+<script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{
+document.getElementById('download-queue').innerHTML=NexusData.downloads.slice(0,15).map(d=>`<div class="glass-card reveal" style="margin-bottom:0.75rem"><div style="display:flex;justify-content:space-between"><strong>${d.name}</strong><span class="badge badge-${d.status==='completed'?'success':'primary'}">${d.status}</span></div><div class="progress-bar" style="margin-top:0.5rem;height:8px"><div class="progress-fill" style="width:${d.progress}%"></div></div></div>`).join('');
+document.getElementById('downloads-table').innerHTML=NexusData.downloads.map(d=>`<tr><td>${d.name}</td><td>${d.size}</td><td>${d.progress}%</td><td>${d.status}</td><td>${NexusApp.formatDate(d.started)}</td></tr>`).join('');});</script>
+</body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud — File Preview</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="preview-container" style="position:relative;min-height:100vh;display:flex;flex-direction:column">
+    <div class="preview-toolbar">
+      <button class="btn btn-ghost" data-close-preview>← Back</button>
+      <h2 id="preview-title" style="font-size:1rem">Loading...</h2>
+      <div style="display:flex;gap:0.5rem">
+        <button class="btn btn-ghost">🔍 Zoom</button>
+        <button class="btn btn-ghost">📥 Download</button>
+        <button class="btn btn-primary">🔗 Share</button>
+      </div>
+    </div>
+    <div style="display:flex;flex:1;overflow:hidden">
+      <div class="preview-main" id="preview-content"></div>
+      <div class="preview-sidebar">
+        <h3 style="margin-bottom:1rem">Details</h3>
+        <div id="preview-meta" style="font-size:0.9rem;color:var(--text-secondary)"></div>
+        <div class="glass-card" style="margin-top:1rem;padding:1rem">
+          <h4 style="font-size:0.85rem;margin-bottom:0.5rem">🔍 OCR Preview</h4>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Extracted text: "Quarterly report summary..."</p>
+        </div>
+        <div class="glass-card" style="margin-top:1rem;padding:1rem">
+          <h4 style="font-size:0.85rem">📱 QR Share</h4>
+          <div style="width:120px;height:120px;background:var(--bg-tertiary);margin:0.5rem auto;display:flex;align-items:center;justify-content:center;border-radius:8px">QR</div>
+        </div>
+        <h3 style="margin:1.5rem 0 0.75rem">Comments</h3>
+        <div class="comments-section" id="preview-comments"></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script><script src="js/preview.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => NexusPreview.init());</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud — Storage Analytics</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="sidebar-overlay"></div>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav><div class="sidebar-storage"><div class="storage-label"><span>Storage</span><span>847 GB</span></div><div class="progress-bar"><div class="progress-fill" id="storage-progress" style="width:84.7%"></div></div></div></aside>
+    <main class="main-content">
+      <header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><span class="search-icon">🔍</span><input data-global-search placeholder="Search analytics..."></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button></div></header>
+      <div class="page-content">
+        <div class="page-header reveal"><h2>Storage Analytics</h2><p>Comprehensive usage reports and trends</p></div>
+        <div class="stats-grid reveal">
+          <div class="stat-card"><div class="stat-icon purple">💾</div><div><div class="stat-value" id="stat-storage">847 GB</div><div class="stat-label">Storage Used</div></div></div>
+          <div class="stat-card"><div class="stat-icon cyan">📁</div><div><div class="stat-value" id="stat-files">12,847</div><div class="stat-label">Total Files</div></div></div>
+          <div class="stat-card"><div class="stat-icon green">📤</div><div><div class="stat-value" id="stat-uploads">1,247</div><div class="stat-label">Uploads This Month</div></div></div>
+          <div class="stat-card"><div class="stat-icon amber">📥</div><div><div class="stat-value" id="stat-downloads">3,891</div><div class="stat-label">Downloads This Month</div></div></div>
+        </div>
+        <div class="grid-2 reveal">
+          <div class="chart-card"><h3>Monthly Uploads</h3><div id="uploads-chart"></div></div>
+          <div class="chart-card"><h3>Monthly Downloads</h3><div id="downloads-chart"></div></div>
+        </div>
+        <div class="grid-3 reveal" style="margin-top:1.5rem">
+          <div class="chart-card"><h3>File Type Distribution</h3><div id="type-donut"></div></div>
+          <div class="chart-card"><h3>Storage by Type</h3><div id="storage-breakdown" class="storage-breakdown"></div></div>
+          <div class="chart-card"><h3>Activity by Hour</h3><div id="activity-chart"></div></div>
+        </div>
+        <div class="glass-card reveal" style="margin-top:2rem">
+          <h3 style="margin-bottom:1rem">Top Downloaded Files</h3>
+          <div class="data-table-wrap"><table class="data-table"><thead><tr><th>#</th><th>File</th><th>Downloads</th><th>Views</th><th>Size</th></tr></thead><tbody id="top-files-body"></tbody></table></div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/search.js"></script><script src="js/analytics.js"></script><script src="js/app.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => NexusAnalytics.init());</script>
+</body>
+</html>

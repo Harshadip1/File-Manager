@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Shared Files</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><input data-global-search></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button><button class="btn btn-primary">Invite</button></div></header>
+<div class="page-content">
+<div class="page-header reveal"><h2>🔗 Shared Files</h2><p>Permissions, shared folders & access management</p></div>
+<div class="glass-card reveal" style="margin-bottom:2rem"><h3>Permission Table</h3>
+<table class="data-table" style="margin-top:1rem"><thead><tr><th>File/Folder</th><th>Shared With</th><th>Permission</th><th>Expires</th></tr></thead><tbody id="perm-table"></tbody></table></div>
+<div class="files-grid reveal" id="shared-grid"></div>
+</div></main></div>
+<script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/files.js"></script><script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{
+const shared=NexusData.shared.length?NexusData.shared:NexusData.files.filter(f=>f.shared);
+document.getElementById('perm-table').innerHTML=Array(35).fill(0).map((_,i)=>{const f=NexusData.random(shared);const u=NexusData.random(NexusData.users);return`<tr><td>${f.icon} ${f.name}</td><td>${u.name}</td><td><span class="badge badge-primary">${NexusData.random(['View','Edit','Admin'])}</span></td><td>${NexusData.randomInt(7,90)} days</td></tr>`;}).join('');
+NexusFiles.renderGrid(document.getElementById('shared-grid'),shared);});</script>
+</body></html>

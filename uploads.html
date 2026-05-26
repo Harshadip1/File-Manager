@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud — Upload Center</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="sidebar-overlay"></div>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav><div class="sidebar-storage"><div class="storage-label"><span>Storage</span><span>847 GB</span></div><div class="progress-bar"><div class="progress-fill" style="width:84.7%"></div></div></div></aside>
+    <main class="main-content">
+      <header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><span class="search-icon">🔍</span><input type="search" data-global-search placeholder="Search..."></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button></div></header>
+      <div class="page-content">
+        <div class="page-header reveal"><h2>Upload Center</h2><p>Drag & drop or click to upload — 90 items in history</p></div>
+        <div class="grid-2 reveal">
+          <div>
+            <div class="upload-zone" id="upload-zone">
+              <div class="upload-icon">📤</div>
+              <h3>Drop files here</h3>
+              <p style="color:var(--text-muted);margin:0.5rem 0">or click to browse • Max 5 GB per file</p>
+              <button class="btn btn-primary" style="margin-top:1rem">Select Files</button>
+            </div>
+            <div class="glass-card" style="margin-top:1.5rem">
+              <h3 style="margin-bottom:1rem">🎤 Voice Search</h3>
+              <button class="btn btn-ghost" id="voice-btn">🎙️ Start Voice Upload</button>
+              <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem">Say "upload project files"</p>
+            </div>
+          </div>
+          <div>
+            <h3 style="margin-bottom:1rem">Upload Queue</h3>
+            <div id="upload-queue" style="max-height:500px;overflow-y:auto"></div>
+          </div>
+        </div>
+        <div class="glass-card reveal" style="margin-top:2rem">
+          <h3 style="margin-bottom:1rem">Upload History (90 records)</h3>
+          <div class="data-table-wrap"><table class="data-table"><thead><tr><th>File</th><th>Size</th><th>Status</th><th>Started</th><th>Progress</th></tr></thead><tbody id="upload-history-body"></tbody></table></div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/search.js"></script><script src="js/upload.js"></script><script src="js/app.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',()=>{NexusUpload.init();document.getElementById('voice-btn')?.addEventListener('click',()=>NexusApp.toast('Voice search listening... (demo)'));});</script>
+</body>
+</html>

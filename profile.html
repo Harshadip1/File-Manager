@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Profile</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><div class="header-actions" style="margin-left:auto"><button class="btn btn-icon" data-theme-toggle>🌙</button></div></header>
+<div class="page-content">
+<div class="glass-card reveal" style="text-align:center;padding:3rem">
+<div style="width:100px;height:100px;border-radius:50%;background:var(--gradient-primary);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:2.5rem;font-weight:700">AM</div>
+<h2>Alex Morgan</h2><p style="color:var(--text-muted)">user@workspace.demo • Admin</p>
+<div class="stats-grid" style="margin-top:2rem;text-align:left">
+<div class="stat-card"><div class="stat-value">247 GB</div><div class="stat-label">Storage Used</div></div>
+<div class="stat-card"><div class="stat-value">1,842</div><div class="stat-label">Files Owned</div></div>
+<div class="stat-card"><div class="stat-value">89</div><div class="stat-label">Shared Items</div></div>
+</div></div>
+<div class="glass-card reveal" style="margin-top:2rem"><h3>Recent Activity</h3><div id="profile-activity"></div></div>
+</div></main></div>
+<script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{document.getElementById('profile-activity').innerHTML=NexusData.activities.slice(0,30).map(a=>`<div class="activity-item"><div class="activity-avatar">${a.user.charAt(0)}</div><div><p>${a.action} ${a.target}</p><time>${NexusApp.formatDate(a.time)}</time></div></div>`).join('');});</script>
+</body></html>

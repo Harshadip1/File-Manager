@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Video Player</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/gallery.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><a href="gallery.html" class="btn btn-ghost">← Gallery</a></header>
+<div class="page-content">
+<div class="page-header reveal"><h2 id="video-title">Video Player</h2></div>
+<div class="video-player-wrap reveal" style="margin:0 auto"><div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:5rem">🎬</div>
+<div class="video-controls"><button class="btn btn-ghost">▶</button><span style="flex:1;height:4px;background:rgba(255,255,255,0.3);border-radius:2px"><span style="display:block;width:42%;height:100%;background:var(--primary)"></span></span><span>18:24 / 42:15</span><button class="btn btn-ghost">⛶</button></div></div>
+<div class="glass-card reveal" style="margin-top:2rem"><h3>Related Videos</h3><div class="files-grid" id="related-videos" style="margin-top:1rem"></div></div>
+</div></main></div>
+<script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/files.js"></script><script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{const v=NexusData.files.filter(f=>f.type==='video');document.getElementById('video-title').textContent=v[0]?.name||'Demo Video';NexusFiles.renderGrid(document.getElementById('related-videos'),v,12);});</script>
+</body></html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusCloud — Trash</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="sidebar-overlay"></div>
+  <div class="app-layout">
+    <aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+    <main class="main-content">
+      <header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><input data-global-search placeholder="Search trash..."></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button><button class="btn btn-ghost" style="color:var(--danger)">Empty Trash</button></div></header>
+      <div class="page-content">
+        <div class="page-header reveal"><h2>🗑️ Trash Bin</h2><p>110 deleted items — Auto-delete in 30 days</p></div>
+        <div class="toolbar reveal"><button class="btn btn-primary">♻️ Restore Selected</button><button class="btn btn-ghost" style="color:var(--danger)">Delete Forever</button></div>
+        <div class="data-table-wrap reveal"><table class="data-table"><thead><tr><th><input type="checkbox"></th><th>Name</th><th>Original Path</th><th>Size</th><th>Deleted</th><th>Expires</th><th>Actions</th></tr></thead><tbody id="trash-body"></tbody></table></div>
+        <div class="files-grid reveal" id="trash-grid" style="margin-top:2rem"></div>
+      </div>
+    </main>
+  </div>
+  <script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/files.js"></script><script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('trash-body').innerHTML = NexusData.trash.map(t =>
+        `<tr><td><input type="checkbox"></td><td>${t.icon} ${t.name}</td><td>${t.originalPath}</td><td>${t.sizeFormatted}</td><td>${NexusApp.formatDate(t.deletedAt)}</td><td>${t.expiresIn}</td><td><button class="btn btn-ghost" style="padding:0.25rem 0.5rem">Restore</button></td></tr>`
+      ).join('');
+      NexusFiles.renderGrid(document.getElementById('trash-grid'), NexusData.trash, 40);
+    });
+  </script>
+</body>
+</html>

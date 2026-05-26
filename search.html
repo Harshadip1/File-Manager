@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Search Results</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><input data-global-search data-search-input id="search-input" placeholder="Smart search..."></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button></div></header>
+<div class="page-content">
+<div class="page-header reveal"><h2>🔍 Search Results</h2><p>Results for: <strong data-search-query>all files</strong></p></div>
+<div class="ai-suggestions reveal"><h4>✨ Smart Search Suggestions</h4><span class="ai-chip">project reports 2025</span><span class="ai-chip">large video files</span><span class="ai-chip">shared with team</span></div>
+<div class="glass-card reveal" style="margin:1.5rem 0"><p id="result-count"></p></div>
+<div class="files-grid reveal" id="search-results"></div>
+<div class="data-table-wrap reveal" style="margin-top:2rem"><table class="data-table"><thead><tr><th>Name</th><th>Type</th><th>Folder</th><th>Size</th><th>Owner</th></tr></thead><tbody id="search-table"></tbody></table></div>
+</div></main></div>
+<script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/search.js"></script><script src="js/files.js"></script><script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{
+const params=new URLSearchParams(location.search);
+const q=params.get('q')||'';
+const input=document.getElementById('search-input');
+if(input&&q)input.value=decodeURIComponent(q);
+const results=q?NexusSearch.searchFiles(decodeURIComponent(q)):NexusData.files.slice(0,100);
+document.querySelector('[data-search-query]').textContent=q||'all files (showing 100)';
+document.getElementById('result-count').textContent=results.length+' files found';
+NexusFiles.renderGrid(document.getElementById('search-results'),results,48);
+document.getElementById('search-table').innerHTML=results.slice(0,60).map(f=>`<tr><td>${f.icon} ${f.name}</td><td>${f.type}</td><td>${f.folder}</td><td>${f.sizeFormatted}</td><td>${f.owner}</td></tr>`).join('');
+NexusSearch.initGlobalSearch();});</script>
+</body></html>

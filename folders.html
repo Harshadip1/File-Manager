@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NexusCloud — Folder Management</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head>
+<body>
+<div class="particles" id="particles"></div><div class="sidebar-overlay"></div>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-logo"><div class="logo-icon">☁️</div><h1>NexusCloud</h1></div><nav class="sidebar-nav" id="sidebar-nav"></nav></aside>
+<main class="main-content">
+<header class="top-header"><button class="menu-toggle">☰</button><div class="search-bar"><input placeholder="Search folders..."></div><div class="header-actions"><button class="btn btn-icon" data-theme-toggle>🌙</button><button class="btn btn-primary">+ New Folder</button></div></header>
+<div class="page-content">
+<div class="page-header reveal"><h2>📂 Folder Management</h2><p>95 folders — nested hierarchy with color customization</p></div>
+<div class="grid-2 reveal">
+<div class="glass-card"><h3>Folder Tree</h3><div id="folder-tree" style="margin-top:1rem;max-height:500px;overflow-y:auto"></div></div>
+<div><div class="grid-3" id="folder-cards"></div>
+<div class="data-table-wrap" style="margin-top:1.5rem"><table class="data-table"><thead><tr><th>Folder</th><th>Files</th><th>Size</th><th>Color</th><th>Modified</th></tr></thead><tbody id="folder-table"></tbody></table></div></div>
+</div></div></main></div>
+<script src="js/data.js"></script><script src="js/storage.js"></script><script src="js/themes.js"></script><script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{
+document.getElementById('folder-tree').innerHTML=NexusData.folders.slice(0,50).map(f=>`<div class="folder-tree-item" style="padding-left:${f.parent? '1.5rem':'0'}"><span style="color:${f.color}">📁</span> ${f.name}</div>`).join('');
+document.getElementById('folder-cards').innerHTML=NexusData.folders.slice(0,12).map(f=>`<div class="glass-card" style="border-left:4px solid ${f.color}"><h4>${f.name}</h4><p style="font-size:0.85rem;color:var(--text-muted)">${f.files} files • ${f.size}</p></div>`).join('');
+document.getElementById('folder-table').innerHTML=NexusData.folders.map(f=>`<tr><td><span style="color:${f.color}">📁</span> ${f.name}</td><td>${f.files}</td><td>${f.size}</td><td><span style="display:inline-block;width:16px;height:16px;background:${f.color};border-radius:4px"></span></td><td>${NexusApp.formatDate(f.modified)}</td></tr>`).join('');});</script>
+</body></html>
